@@ -24,7 +24,7 @@ Application deployed at the live GitHub URL: https://billy-rowden.github.io/Weat
 A program where the user can enter the name of a city and weather data for the current day and forecast for the following 5 days will be fetched from the OpenWeather API and displayed on the screen. 
 
 The following image displays a full page screenshot of the application with an example search and what data will be displayed.
-![Alt text](/images/WeatherAppFullScreen.png)
+![Alt text](/assets/images/WeatherAppFullScreen.png)
 
 ## Credits
 
