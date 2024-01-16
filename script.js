@@ -40,8 +40,8 @@ $(document).ready(function () { //ensures document is fully loaded and parsed be
     forecastedSection.innerHTML = ''; // clears the previous data
 
     for (let i = 0; i < data.list.length; i++) {
-      const forecastItem = data.list[i];
-      const date = dayjs(forecastItem.dt_txt).format('YYYY-MM-DD HH:mm:ss');
+      const forecastItem = data.list[i]; // variable for a list of times in the future and the relative weather data
+      const date = dayjs(forecastItem.dt_txt).format('YYYY-MM-DD HH:mm:ss'); // displays the time block and date of the specific weather data in the forecase
       const temperature = forecastItem.main.temp; // creates a variable to use later for data to be shown in forecasted section
       const windSpeed = forecastItem.wind.speed;
       const humidity = forecastItem.main.humidity;
@@ -53,9 +53,17 @@ $(document).ready(function () { //ensures document is fully loaded and parsed be
                                       <p>Humidity: ${humidity} %</p>
                                       </div>`;
     }  
-  }
+  };
+  
+  // need an event listener for the form submission so that the function executes when a city is searched
+  $('#search-form').submit(function (event) {
+    event.preventDefault();
+    const location = $('#search-input').val();
+    getWeather(location);
 
+    // need to add each city searched to a list which represents the history of searched cities
+    // Add the city to the history list
+    $('#history').prepend(`<button class="list-group-item" onclick="getWeather('${location}')">${location}</button>`); // generates a button for the previously searched cities
+  });
 
-  // need an event listener for the form submission
-  // need to add each city searched to a list which represents the history of searched cities
 });
