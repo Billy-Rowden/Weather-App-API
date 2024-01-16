@@ -25,12 +25,17 @@ $(document).ready(function () { //ensures document is fully loaded and parsed be
 
   // need a function to display the current data
   function displayCurrentWeather(data) {
-    
+    const todaySection = document.getElementById('today');
+    todaySection.innerHTML = `<h2>${data.name}, ${data.sys.country}</h2>
+                              <p>Temperature: ${data.main.temp} °C</p>
+                              <p>Wind: ${data.wind.speed} KPH</p>
+                              <p>Humidity: ${data.main.humidity} %</p>`; // displays the name of the city, the country, temperature, wind speed and humidity.
   }
   // need a function to display the forecasted data
   function displayForecastedWeather(data) {
 
   }
+  getWeather('London');
   // need an event listener for the form submission
   // need to add each city searched to a list which represents the history of searched cities
-})
+});
