@@ -39,8 +39,12 @@ $(document).ready(function () { //ensures document is fully loaded and parsed be
     const forecastedSection = document.getElementById('forecast');
     forecastedSection.innerHTML = ''; // clears the previous data
 
-    for (let i = 0; i < data.list.length; i++) {
-      const forecastItem = data.list[i]; // variable for a list of times in the future and the relative weather data
+    const middayForecasts = data.list.filter(forecastItem => {
+      return forecastItem.dt_txt.includes("12:00:00");
+    });
+
+    for (let i = 0; i < middayForecasts.length && i < 5; i++) {
+      const forecastItem = middayForecasts[i]; // variable for a list of times in the future and the relative weather data
       const date = dayjs(forecastItem.dt_txt).format('YYYY-MM-DD HH:mm:ss'); // displays the time block and date of the specific weather data in the forecase
       const temperature = forecastItem.main.temp; // creates a variable to use later for data to be shown in forecasted section
       const windSpeed = forecastItem.wind.speed;
