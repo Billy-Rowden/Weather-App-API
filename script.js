@@ -5,13 +5,22 @@ $(document).ready(function () { //ensures document is fully loaded and parsed be
   // need a function to fetch the weather data from the OpenWeather API
   function getWeather(location) {
     const currentWeatherUrl = `${apiUrl}weather?q=${city}&appid=${apiKey}&units=metric`;
-    const forecastedUrl = `${apiUrl}forecast?q=${city}&appid=${apiKey}&units=metric`;
+    const forecastedWeatherUrl = `${apiUrl}forecast?q=${city}&appid=${apiKey}&units=metric`;
     // need to fetch the current weather data
     fetch(currentWeatherUrl)
+      .then(response => response.json()) // parse the response from fetch request as JSON
+      .then(data => { 
+        displayCurrentWeather(data); // function displayCurrentWeather is called passing the fetched weather data to it.
+      })
+      .catch(error => console.error('Error fetching current weather', error)); // this handles any error that happens during the fetch and logs an eror to the console
 
     // need to fetch the data for the next 5 days of forecast
-    fetch(forecastedUrl)
-      
+    fetch(forecastedWeatherUrl)
+      .then(response => response.json()) 
+      .then(data => { 
+        displayForecastedWeather(data); 
+      })
+      .catch(error => console.error('Error fetching current weather', error));
     }
 
   // need a function to display the current data
@@ -19,7 +28,7 @@ $(document).ready(function () { //ensures document is fully loaded and parsed be
     
   }
   // need a function to display the forecasted data
-  function displayForecasted(data) {
+  function displayForecastedWeather(data) {
 
   }
   // need an event listener for the form submission
